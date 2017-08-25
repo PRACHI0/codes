@@ -1,0 +1,65 @@
+  struct node{
+      int val;
+      struct node *left;
+    struct node *right;
+  };
+ int** funct(int len,int path[],int ans[][len]);
+  
+ struct node* newnode(int val){
+ struct node* root =(struct node*) malloc(sizeof(struct node));
+     root->val = val;
+      root->left = NULL;
+      root->right = NULL;
+      return root;
+  }
+ 
+ /*input root : Root pointer of the tree 
+ * @input B : Integer
+ * 
+ * @Output 2D int array. You need to malloc memory. Fill in len1 as the number of rows
+ * For each row i, A[i][0] should indicate the number of columns in row i.
+ * Then A[i][1] to A[i][col] should have the values in those columns.
+ *
+ */
+int** pathSum(treenode* root, int B, int *len1) {
+    
+    int sum=0;int i,j,k;int count=0;static int len=0;int **ans;
+    int path[100];
+    if(root==NULL)
+    return;
+    
+        path[len]=root->val;
+        len++;
+ 
+        
+    if(root->left==NULL && root->right==NULL)
+    {count++;
+    for(i=0;i<len;i++)  
+    {sum=sum+path[i];}
+    if(sum==B)
+{
+*len1=count;
+     
+     
+      
+funct(len,path,ans);
+    
+ }
+} 
+         
+ 
+    else
+    {pathSum(root->left,B-sum,&len);
+    pathSum(root->right,B-sum,&len);
+    }
+
+
+
+for(i=0;i<len;i++){printf("%d",ans[0][i]);}
+}
+int** funct(int len,int path[],int ans[][len])
+    {
+        int k;
+     
+for(k=0;k<len;k++){ans[0][k]=path[k];} 
+return ans;}
